@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="*6_*\**\*.cs" />
+    <Compile Include="*7_*\**\*.cs" />
   </ItemGroup>
 
 </Project>
