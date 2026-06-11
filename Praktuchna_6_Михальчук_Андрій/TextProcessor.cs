@@ -3,6 +3,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 namespace StudentGroupApp;
+
 public static class TextProcessor
 {
     public static string Reverse(string input)
@@ -12,6 +13,7 @@ public static class TextProcessor
         Array.Reverse(chars);
         return new string(chars);
     }
+
     public static int CountWords(string text)
     {
         if (string.IsNullOrWhiteSpace(text))
@@ -21,6 +23,7 @@ public static class TextProcessor
 
         return text.Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries).Length;
     }
+
     public static int CountCharacters(string text, bool ignoreWhitespace = true)
     {
         ArgumentNullException.ThrowIfNull(text);
@@ -32,6 +35,7 @@ public static class TextProcessor
 
         return text.Count(c => !char.IsWhiteSpace(c));
     }
+
     public static string Normalize(string text)
     {
         if (string.IsNullOrWhiteSpace(text))
@@ -41,6 +45,7 @@ public static class TextProcessor
 
         return Regex.Replace(text.Trim(), @"\s+", " ");
     }
+
     public static bool IsPalindrome(string text, bool ignoreCase = true, bool ignoreSpaces = true)
     {
         if (string.IsNullOrWhiteSpace(text))
@@ -61,6 +66,7 @@ public static class TextProcessor
 
         return processed.SequenceEqual(processed.Reverse());
     }
+
     public static string ReplaceMultiple(string text, Dictionary<string, string> replacements)
     {
         ArgumentNullException.ThrowIfNull(text);
@@ -74,6 +80,7 @@ public static class TextProcessor
 
         return result;
     }
+
     public static List<string> SplitIntoSentences(string text)
     {
         if (string.IsNullOrWhiteSpace(text))
@@ -86,6 +93,7 @@ public static class TextProcessor
             .Select(s => s.Trim())
             .ToList();
     }
+
     public static string BuildGroupReport(StudentGroup group)
     {
         ArgumentNullException.ThrowIfNull(group);
@@ -111,6 +119,7 @@ public static class TextProcessor
         sb.Append("Боржників (<60): ").AppendLine(group.GetFailingStudents().Count.ToString());
         return sb.ToString();
     }
+
     public static string ComparePerformance(int iterations)
     {
         if (iterations <= 0)
@@ -147,6 +156,7 @@ public static class TextProcessor
         report.Append("Висновок: StringBuilder швидший при великій кількості операцій.");
         return report.ToString();
     }
+
     public static string GenerateSqlQuery(string description)
     {
         if (string.IsNullOrWhiteSpace(description))

@@ -3,10 +3,6 @@ using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 
 namespace StudentGroupApp;
-
-/// <summary>
-/// Представляє студента навчальної групи ЗПФК.
-/// </summary>
 public class Student : ICloneable
 {
     private string _fullName = string.Empty;
@@ -118,10 +114,6 @@ public class Student : ICloneable
 
     [JsonIgnore]
     public GradeJournal Journal => _gradeJournal;
-
-    /// <summary>
-    /// Формує інформацію про студента виключно через StringBuilder.
-    /// </summary>
     public string GetFormattedInfo(bool detailed = false)
     {
         var sb = new StringBuilder();
@@ -141,10 +133,6 @@ public class Student : ICloneable
 
         return sb.ToString();
     }
-
-    /// <summary>
-    /// Шукає ключове слово у всіх текстових полях без урахування регістру.
-    /// </summary>
     public bool ContainsKeyword(string keyword)
     {
         if (string.IsNullOrWhiteSpace(keyword))

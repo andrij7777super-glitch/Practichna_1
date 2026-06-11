@@ -3,10 +3,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace StudentGroupApp;
-
-/// <summary>
-/// Навчальна група студентів із інтеграцією матриці портів.
-/// </summary>
 public class StudentGroup
 {
     private readonly List<Student> _students = new();
@@ -31,20 +27,8 @@ public class StudentGroup
             }
         }
     }
-
-    /// <summary>
-    /// Знімки стану матриці портів для JSON-збереження.
-    /// </summary>
     public List<PortCellSnapshot> PortSnapshots { get; set; } = new();
-
-    /// <summary>
-    /// Прив'язки студентів до координат портів (для JSON-збереження).
-    /// </summary>
     public List<PortAssignmentEntry> PortAssignmentList { get; set; } = new();
-
-    /// <summary>
-    /// Збережений текст логу портів.
-    /// </summary>
     public string PortLogText { get; set; } = string.Empty;
 
     [JsonIgnore]
@@ -106,10 +90,6 @@ public class StudentGroup
 
     public double GetExcellentPercentage() =>
         _students.Count == 0 ? 0 : Math.Round((double)GetExcellentStudents().Count / _students.Count * 100, 2);
-
-    /// <summary>
-    /// Шукає студентів за фрагментом ПІБ і повертає форматований результат.
-    /// </summary>
     public string SearchByNameFragment(string fragment)
     {
         var sb = new StringBuilder();
@@ -137,10 +117,6 @@ public class StudentGroup
 
         return sb.ToString();
     }
-
-    /// <summary>
-    /// Експортує студентів у формат CSV через StringBuilder.
-    /// </summary>
     public string ExportToCsv()
     {
         var sb = new StringBuilder();
@@ -158,10 +134,6 @@ public class StudentGroup
 
         return sb.ToString();
     }
-
-    /// <summary>
-    /// Імпортує студентів з тексту. Формат рядка: ПІБ;залікова;email;дд.ММ.рррр
-    /// </summary>
     public void ImportStudentsFromText(string rawText)
     {
         if (string.IsNullOrWhiteSpace(rawText))
@@ -217,10 +189,6 @@ public class StudentGroup
             throw new InvalidOperationException("Не вдалося імпортувати жодного студента. Перевірте формат: ПІБ;залікова;email;дд.ММ.рррр");
         }
     }
-
-    /// <summary>
-    /// Нормалізує нотатки всіх студентів групи.
-    /// </summary>
     public int NormalizeAllNotes()
     {
         var count = 0;
@@ -236,20 +204,12 @@ public class StudentGroup
 
         return count;
     }
-
-    /// <summary>
-    /// Ініціалізує матрицю портів 16×16.
-    /// </summary>
     public void InitializePortMatrix()
     {
         _portMatrix = new PortMatrix();
         _portMatrix.InitializeMatrix();
         _portLogger.LogOperation("Ініціалізація", 0, "Матрицю портів 16×16 створено та готово до роботи.");
     }
-
-    /// <summary>
-    /// Прив'язує студента до порту за координатами матриці.
-    /// </summary>
     public void AssignStudentToPort(Student student, int row, int col)
     {
         ArgumentNullException.ThrowIfNull(student);
@@ -270,10 +230,6 @@ public class StudentGroup
             port.PortNumber,
             $"Студент {student.FullName} прив'язано до координат [{row},{col}].");
     }
-
-    /// <summary>
-    /// Повертає студентів, прив'язаних до портів із заданим статусом (відкритий/закритий).
-    /// </summary>
     public List<Student> GetStudentsByPortStatus(bool isOpen)
     {
         EnsurePortMatrixInitialized();
@@ -296,10 +252,6 @@ public class StudentGroup
 
         return result;
     }
-
-    /// <summary>
-    /// Симулює виконання лабораторної роботи: оцінка → масив LabGrades → порт → лог.
-    /// </summary>
     public void SimulateLabWork(string recordBookNumber, int labNumber, byte grade)
     {
         var student = FindStudent(recordBookNumber)
@@ -325,10 +277,6 @@ public class StudentGroup
             port.PortNumber,
             $"Студент {student.FullName} виконав лаб. #{labNumber}, оцінка {grade}, дані записано в порт [{coordinates.Row},{coordinates.Col}].");
     }
-
-    /// <summary>
-    /// Генерує великий звіт про стан групи через StringBuilder.
-    /// </summary>
     public string GenerateFullReport()
     {
         var sb = new StringBuilder();
@@ -453,10 +401,6 @@ public class StudentGroup
         };
     }
 }
-
-/// <summary>
-/// Запис про прив'язку студента до порту.
-/// </summary>
 public class PortAssignmentEntry
 {
     public string RecordBookNumber { get; set; } = string.Empty;
