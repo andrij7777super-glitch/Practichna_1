@@ -1,0 +1,9 @@
+## Visual Studio / .NET
+
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+.vs/
+*.user
+*.suo
