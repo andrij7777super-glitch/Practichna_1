@@ -5,8 +5,11 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <RootNamespace>StudentGroupApp</RootNamespace>
-    <AssemblyName>StudentGroupApp</AssemblyName>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="*4_*\**\*.cs" />
+  </ItemGroup>
 
 </Project>
