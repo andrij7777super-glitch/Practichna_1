@@ -1,0 +1,7 @@
+bin/
+obj/
+.vs/
+*.user
+port_log.txt
+full_report.txt
+group_data.json
