@@ -7,6 +7,13 @@
     <Nullable>enable</Nullable>
     <RootNamespace>StudentGroupApp</RootNamespace>
     <AssemblyName>StudentGroupApp</AssemblyName>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="**\*.cs" />
+    <Compile Include="Praktuchna_4_Михальчук_Андрій\**\*.cs"
+               Exclude="Praktuchna_4_Михальчук_Андрій\obj\**;Praktuchna_4_Михальчук_Андрій\bin\**" />
+  </ItemGroup>
 
 </Project>
